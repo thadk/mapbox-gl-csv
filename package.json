@@ -6,7 +6,8 @@
   "scripts": {
     "build-demo": "browserify -s mapboxgl mapbox-gl.js > dist/mapbox-gl.js",
     "build": "browserify -s mapboxgl.TopoJSONSource topojson_source.js > dist/mapbox-gl-topojson.js",
-    "build-csv": "browserify -s mapboxgl.CSVSource csv_source.js > dist/mapbox-gl-csv.js"
+    "build-csv": "browserify -s mapboxgl.CSVSource csv_source.js > dist/mapbox-gl-csv.js",
+    "build-csv-min": "browserify -s mapboxgl.CSVSource csv_source.js | uglifyjs -c > dist/mapbox-gl-csv.min.js"
   },
   "keywords": [],
   "author": "Anand Thakker <vestibule@anandthakker.net> (http://anandthakker.net/)",
@@ -21,7 +22,8 @@
     "eslint-config-standard": "^5.3.5",
     "eslint-plugin-promise": "^2.0.1",
     "eslint-plugin-standard": "^2.0.0",
-    "mapbox-gl": "0.22.1"
+    "mapbox-gl": "0.22.1",
+    "uglifyify": "^4.0.0"
   },
   "peerDependencies": {
     "mapbox-gl": "0.30.0"
