@@ -38,7 +38,7 @@ function loadGeoJSON (params, callback) {
     var getCSVCallback = function (err, csvdata) {
 
         if (err) { return callback(err) }
-        csv2geojson.csv2geojson(csvdata, {latfield: 'Latitude', lonfield: 'Longitude', delimiter: ','}, callback);
+        csv2geojson.csv2geojson(csvdata, params, callback);
         //console.log('data', data, params)
     }
     getCSV(params.url, getCSVCallback);
