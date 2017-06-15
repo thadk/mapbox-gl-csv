@@ -43,6 +43,9 @@ map.on('load', function () {
     type: 'csv',
     data: 'https://gist.githubusercontent.com/thadk/be6de2478c8aae7656a582895de8ff08/raw/f500079137f645f2e71337352fdcf9f1960ca42c/ym.csv',
     workerOptions: {
+      latfield: 'Latitude',
+      lonfield: 'Longitude',
+      delimiter: ','
     }
   })
 
