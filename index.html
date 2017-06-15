@@ -6,6 +6,7 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='dist/mapbox-gl.js'></script>
     <script src='dist/mapbox-gl-topojson.js'></script>
+    <script src='dist/mapbox-gl-csv.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.22.1/mapbox-gl.css' rel='stylesheet' />
     <style>
         body { margin:0; padding:0; }
@@ -19,6 +20,7 @@
 mapboxgl.accessToken = getAccessToken()
 
 mapboxgl.Source.addType('topojson', mapboxgl.TopoJSONSource)
+mapboxgl.Source.addType('csv', mapboxgl.CSVSource)
 
 var map = window.map = new mapboxgl.Map({
   container: 'map',
@@ -30,15 +32,27 @@ var map = window.map = new mapboxgl.Map({
 map.addControl(new mapboxgl.Navigation())
 
 map.on('load', function () {
-  map.addSource('counties', {
+  /*map.addSource('counties', {
     type: 'topojson',
-    data: 'ca.json',
+    data: 'http://devseed.com/mapbox-gl-topojson/ca.json',
     workerOptions: {
       layer: 'counties'
+    }
+  })*/
+   map.addSource('youthmappers-csv', {
+    type: 'csv',
+    data: 'https://gist.githubusercontent.com/thadk/be6de2478c8aae7656a582895de8ff08/raw/f500079137f645f2e71337352fdcf9f1960ca42c/ym.csv',
+    workerOptions: {
     }
   })
 
   map.addLayer({
+        'id': 'youthmappers',
+        'type': 'circle',
+        'source': 'youthmappers-csv',
+    });
+
+  /*map.addLayer({
     'id': 'county-boundaries',
     'type': 'line',
     'source': 'counties',
@@ -58,7 +72,7 @@ map.on('load', function () {
         ]
       }
     }
-  }, 'country-label-lg')
+  }, 'country-label-lg')*/
 })
 
 function getAccessToken () {
